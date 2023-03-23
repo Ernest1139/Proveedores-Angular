@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Articulos } from './interface/Articulos';
+import { Proveedores } from './interface/Proveedores';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
@@ -18,11 +19,25 @@ export class AppComponent {
     precio : 0
   }
 
+  proveedorSeleccionado : Proveedores = {
+    Id : 0,
+    CodigoProveedor : '',
+    RazonSocial : '',
+    RFC: '',
+    Direccion : '',
+    Email : ''
+  }
+
   // abrirSidebar: boolean = false;
 
   seleccionar(articuloSeleccionar: Articulos){
     console.log(articuloSeleccionar);
     this.articuloSeleccionado = articuloSeleccionar;
+  }
+
+  seleccionarProv(proveedorSeleccionar: Proveedores){
+    console.log(proveedorSeleccionar);
+    this.proveedorSeleccionado = proveedorSeleccionar;
   }
 
   // mostrarSidebar(){

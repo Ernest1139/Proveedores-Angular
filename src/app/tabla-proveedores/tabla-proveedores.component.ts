@@ -41,7 +41,7 @@ export class TablaProveedoresComponent {
     };
 
     // this.articuloSeleccionadoMostrar.emit(this.articuloSeleccionado);
-    //this.router.navigate([`modificarArticulo/${articulo.codigo}`]);
+    this.router.navigate([`modificarProveedor/${proveedor.Id}`]);
   }
 
 }
