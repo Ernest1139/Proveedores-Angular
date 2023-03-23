@@ -1,0 +1,52 @@
+<h1 style="margin-top: 1rem; margin-bottom: 2rem; text-align: center;">Administración de proveedores</h1>
+
+<!-- Corregir alertas -->
+ <div id="alertaMostrar" class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="alerta">
+    
+  {{mensajeAlerta}}
+
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="cerrar()"></button>
+</div>
+
+<!-- Hay que añadir a cada uno de los campos el [(ngModel)]="articuloSeleccionado.codigo para que al seleccionar cada campo se ponga automaticamente" -->
+<div>
+    <div class="mb-3">
+      <label class="form-label">Id:</label>
+      <input type="number" class="form-control" placeholder="Ingrese su codigo" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Código Proveedor:</label>
+      <input type="text" class="form-control" placeholder="Agregue una descripcion" required="">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Razón Social:</label>
+      <input type="text" class="form-control" placeholder="Agregue una descripcion" required="">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">RFC:</label>
+        <input type="text" class="form-control" placeholder="Agregue una descripcion" required="">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Dirección:</label>
+        <input type="text" class="form-control" placeholder="Agregue una descripcion" required="">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email:</label>
+        <input type="text" class="form-control" placeholder="Agregue una descripcion" required="">
+      </div>
+
+    <div style="margin-bottom: 5em;">
+
+    <!-- Falta añadir la función (click) a cada botón -->
+    <!-- al boton agregar y modificar hay que agregar *ngIf="status=='agregar'" o 'modificar' -->
+      <button class="btn btn-primary btn-lg" type="button" (click)="agregar()" style="margin-right: 1em; font-weight: bold;" *ngIf="status=='agregar'">Agregar</button>
+      <button class="btn btn-primary btn-lg" type="button" (click)="modificar()" style="margin-right: 1em; font-weight: bold;" *ngIf="status=='modificar'">Modificar</button>
+      <button class="btn btn-danger btn-lg" type="button" (click)="limpiar()" style="margin-right: 1em; font-weight: bold;">Limpiar</button>
+       <button class="btn btn-success btn-lg" type="button" (click)="regresar()" style="font-weight: bold;">Regresar</button>
+    </div>
+  </div>
