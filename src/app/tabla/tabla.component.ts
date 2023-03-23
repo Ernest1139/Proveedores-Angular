@@ -10,7 +10,7 @@ import { ArticulosService } from '../services/articulos.service';
 })
 export class TablaComponent {
 
-  @Output() articuloSeleccionadoMostrar = new EventEmitter();
+  //@Output() articuloSeleccionadoMostrar = new EventEmitter();
 
   articuloSeleccionado : Articulos = {
     codigo : '',

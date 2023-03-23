@@ -115,11 +115,11 @@ export class FormularioProveedoresComponent {
 
   limpiar(){
     this.proveedorSeleccionado.Id = 0;
-    this.proveedorSeleccionado.CodigoProveedor = '';
-    this.proveedorSeleccionado.RazonSocial = '';
-    this.proveedorSeleccionado.RFC = '';
-    this.proveedorSeleccionado.Direccion = '';
-    this.proveedorSeleccionado.Email = '';
+    this.proveedorSeleccionado.CodigoProveedor = "";
+    this.proveedorSeleccionado.RazonSocial = "";
+    this.proveedorSeleccionado.RFC = "";
+    this.proveedorSeleccionado.Direccion = "";
+    this.proveedorSeleccionado.Email = "";
   }
 
   regresar(){
