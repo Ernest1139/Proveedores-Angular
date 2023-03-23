@@ -8,6 +8,7 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TablaProveedoresComponent } from './tabla-proveedores/tabla-proveedores.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     TablaComponent,
     FormularioComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    TablaProveedoresComponent
   ],
   imports: [
     BrowserModule,
