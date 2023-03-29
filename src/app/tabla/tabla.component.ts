@@ -13,9 +13,9 @@ export class TablaComponent {
   //@Output() articuloSeleccionadoMostrar = new EventEmitter();
 
   articuloSeleccionado : Articulos = {
-    codigo : '',
-    descripcion : '',
-    precio : 0
+    Codigo : '',
+    Descripcion : '',
+    Precio : 0
   }
   
   articulo : Articulos [] = [];
@@ -23,14 +23,27 @@ export class TablaComponent {
   constructor(private articulosService : ArticulosService, private router: Router){
     console.log("Soy el constructor");
     console.log(this.articulosService.returnData());
-    this.articulo = this.articulosService.returnData();
+    //this.articulo = this.articulosService.returnData();
+    this.cargarData();
+  }
+
+  cargarData(){
+    this.articulosService.returnData().subscribe(data=>{
+      console.log(data);
+      this.articulo=data;
+    });
   }
 
   borrar(articulo: Articulos) {
-    const confirmacion = confirm(`¿Esta seguro de borrar el articulo? ${articulo.descripcion}`)
+    const confirmacion = confirm(`¿Esta seguro de borrar el articulo? ${articulo.Descripcion}`)
     if (confirmacion) {
       // this.articulo = this.articulo.filter(a => a.codigo != articulo.codigo); // muestra todos los articulos con el codigo diferente al seleccionado
-      this.articulosService.eliminar(articulo);
+      // this.articulosService.eliminar(articulo);
+      this.articulosService.eliminar(articulo).subscribe(data=>{
+        console.log(data);
+        this.cargarData();
+      });
+      return;
     }
   }
   
@@ -40,7 +53,7 @@ export class TablaComponent {
     };
 
     // this.articuloSeleccionadoMostrar.emit(this.articuloSeleccionado);
-    this.router.navigate([`modificarArticulo/${articulo.codigo}`]);
+    this.router.navigate([`modificarArticulo/${articulo.Codigo}`]);
   }
 
 }

@@ -12,9 +12,10 @@ import { ArticulosService } from '../services/articulos.service';
 export class FormularioComponent {
 
   @Input() articuloSeleccionado : Articulos = {
-    codigo : '',
-    descripcion : '',
-    precio : 0
+    Id : 0,
+    Codigo : '',
+    Descripcion : '',
+    Precio : 0
   }
   
   status : string = "";
@@ -44,7 +45,7 @@ export class FormularioComponent {
 
   mensajeAlerta : string = "";
   agregar() {
-    if (this.articuloSeleccionado.codigo == '' || this.articuloSeleccionado.descripcion == '') {
+    if (this.articuloSeleccionado.Codigo == '' || this.articuloSeleccionado.Descripcion == '') {
       this.alerta = true;
       this.mensajeAlerta = "Llene todos los campos";
       return;
@@ -63,14 +64,19 @@ export class FormularioComponent {
       return;
     }
 
-    this.articulosService.agregar({
-      ...this.articuloSeleccionado
+    // this.articulosService.agregar({
+    //   ...this.articuloSeleccionado
+    // });
+
+    this.articulosService.agregar(({...this.articuloSeleccionado})).subscribe(data=>{
+      console.log(data)
+      this.articuloSeleccionado = {
+        Codigo: '',
+        Descripcion: '',
+        Precio: 0
+      }
     });
-    this.articuloSeleccionado = {
-      codigo: '',
-      descripcion: '',
-      precio: 0
-    }
+
   }
 
   modificar() {
@@ -108,9 +114,9 @@ export class FormularioComponent {
   }
 
   limpiar(){
-    this.articuloSeleccionado.codigo = "";
-    this.articuloSeleccionado.descripcion = "";
-    this.articuloSeleccionado.precio = 0;
+    this.articuloSeleccionado.Codigo = "";
+    this.articuloSeleccionado.Descripcion = "";
+    this.articuloSeleccionado.Precio = 0;
   }
 
   regresar(){

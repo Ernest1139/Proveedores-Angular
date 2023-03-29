@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { Articulos } from '../interface/Articulos';
 
 @Injectable({
@@ -6,22 +8,27 @@ import { Articulos } from '../interface/Articulos';
 })
 export class ArticulosService {
 
-  constructor() { }
-
   articulo: Articulos [] = [
-    { codigo : "1", descripcion : "papa", precio : 10.55},
-    { codigo : "2", descripcion : "manzana", precio : 12.01},
-    { codigo : "3", descripcion : "melon", precio : 52.23},
-    { codigo : "4", descripcion : "cebolla", precio : 17},
-    { codigo : "5", descripcion : "calabaza", precio : 23}
+    { Codigo : "1", Descripcion : "papa", Precio : 10.55},
+    { Codigo : "2", Descripcion : "manzana", Precio : 12.01},
+    { Codigo : "3", Descripcion : "melon", Precio : 52.23},
+    { Codigo : "4", Descripcion : "cebolla", Precio : 17},
+    { Codigo : "5", Descripcion : "calabaza", Precio : 23}
   ]
 
-  returnData(){
-    return this.articulo;
+  baseUrl : string = "http://localhost:3000/api/productos/"
+
+  constructor(private http: HttpClient) {
+    
+  }
+
+  returnData() : Observable<Articulos[]>{ // Preparar el Observable
+    //return this.articulo;
+    return this.http.get<Articulos[]>(this.baseUrl)
   }
 
   validacion(articulos : Articulos) : boolean{
-    const buscar = this.articulo.filter(a => a.codigo == articulos.codigo)
+    const buscar = this.articulo.filter(a => a.Codigo == articulos.Codigo)
     // if (buscar.length != 0) {
     //   alert("No pueden existir dos articulos con el mismo codigo");
     //   this.alerta = true;
@@ -36,18 +43,21 @@ export class ArticulosService {
 
   }
 
-  agregar(articulos : Articulos){
-    this.articulo.push(articulos);
+  agregar(articulos : Articulos) : Observable<any>{
+    //this.articulo.push(articulos);
+    const headers = { 'Content-type' : 'application/json'};
+    const body = JSON.stringify(articulos);
+    return this.http.post(this.baseUrl,body,{ 'headers' : headers});
   }
 
   seleccionar(codigo : string) : Articulos {
-    return this.articulo.find(art => art.codigo == codigo)!;
+    return this.articulo.find(art => art.Codigo == codigo)!;
   }
   
   getIndex(articulos: Articulos){
     let index = 0;
     this.articulo.forEach(art => {
-      if(articulos.codigo == art.codigo){
+      if(articulos.Codigo == art.Codigo){
         index = this.articulo.indexOf(art);
       }
     });
@@ -60,10 +70,10 @@ export class ArticulosService {
 
   }
 
- eliminar(articulos : Articulos){
-  const index = this.getIndex(articulos);
-  this.articulo.splice(index,1);
-
+ eliminar(articulos : Articulos) : Observable<any>{
+  // const index = this.getIndex(articulos);
+  // this.articulo.splice(index,1);
+  return this.http.delete(this.baseUrl + articulos.Id);
  }
 
 }

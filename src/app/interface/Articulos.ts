@@ -1,7 +1,8 @@
 export interface Articulos {
-    codigo : string;
-    descripcion : string;
-    precio : number;
+    Id ?: number,
+    Codigo : string;
+    Descripcion : string;
+    Precio : number;
   }
 
 

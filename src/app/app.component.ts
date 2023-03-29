@@ -14,9 +14,9 @@ export class AppComponent {
   @ViewChild("sidebar") sidebar : SidebarComponent | undefined;
 
   articuloSeleccionado : Articulos = {
-    codigo : '',
-    descripcion : '',
-    precio : 0
+    Codigo : '',
+    Descripcion : '',
+    Precio : 0
   }
 
   proveedorSeleccionado : Proveedores = {
