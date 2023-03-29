@@ -9,11 +9,11 @@ import { Articulos } from '../interface/Articulos';
 export class ArticulosService {
 
   articulo: Articulos [] = [
-    { Codigo : "1", Descripcion : "papa", Precio : 10.55},
-    { Codigo : "2", Descripcion : "manzana", Precio : 12.01},
-    { Codigo : "3", Descripcion : "melon", Precio : 52.23},
-    { Codigo : "4", Descripcion : "cebolla", Precio : 17},
-    { Codigo : "5", Descripcion : "calabaza", Precio : 23}
+    // { Codigo : "1", Descripcion : "papa", Precio : 10.55},
+    // { Codigo : "2", Descripcion : "manzana", Precio : 12.01},
+    // { Codigo : "3", Descripcion : "melon", Precio : 52.23},
+    // { Codigo : "4", Descripcion : "cebolla", Precio : 17},
+    // { Codigo : "5", Descripcion : "calabaza", Precio : 23}
   ]
 
   baseUrl : string = "http://localhost:3000/api/productos/"
