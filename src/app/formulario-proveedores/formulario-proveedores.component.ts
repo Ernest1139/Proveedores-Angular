@@ -48,6 +48,7 @@ export class FormularioProveedoresComponent {
   mensajeAlerta : string = "";
   agregar() {
     if (this.proveedorSeleccionado.Id == 0 || this.proveedorSeleccionado.CodigoProveedor == '' || this.proveedorSeleccionado.RazonSocial == '' ||  this.proveedorSeleccionado.RFC == '' ||  this.proveedorSeleccionado.Direccion == '' ||  this.proveedorSeleccionado.Email == ''  ) {
+      console.log(this.proveedorSeleccionado);
       this.alerta = true;
       this.mensajeAlerta = "Llene todos los campos";
       return;
@@ -66,17 +67,23 @@ export class FormularioProveedoresComponent {
       return;
     }
 
-    this.proveedoresService.agregar({
-      ...this.proveedorSeleccionado
+    // this.proveedoresService.agregar({
+    //   ...this.proveedorSeleccionado
+    // });
+
+    this.proveedoresService.agregar(({...this.proveedorSeleccionado})).subscribe(data=>{
+      console.log(data)
+      this.proveedorSeleccionado = {
+        Id : 0,
+        CodigoProveedor : '',
+        RazonSocial : '',
+        RFC: '',
+        Direccion : '',
+        Email : ''
+      }
     });
-    this.proveedorSeleccionado = {
-      Id : 0,
-      CodigoProveedor : '',
-      RazonSocial : '',
-      RFC: '',
-      Direccion : '',
-      Email : ''
-    }
+
+    
   }
 
   modificar() {

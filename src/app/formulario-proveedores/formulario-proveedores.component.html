@@ -9,27 +9,27 @@
 
     <div class="mb-3">
       <label class="form-label">Código Proveedor:</label>
-      <input type="text" class="form-control" placeholder="Agregue el código de proveedor" required="">
+      <input type="text" class="form-control" [(ngModel)]="proveedorSeleccionado.CodigoProveedor" placeholder="Agregue el código de proveedor" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Razón Social:</label>
-      <input type="text" class="form-control" placeholder="Agregue usu razón social" required="">
+      <input type="text" class="form-control" [(ngModel)]="proveedorSeleccionado.RazonSocial" placeholder="Agregue usu razón social" required>
     </div>
 
     <div class="mb-3">
         <label class="form-label">RFC:</label>
-        <input type="text" class="form-control" placeholder="Agregue su RFC" required="">
+        <input type="text" class="form-control" [(ngModel)]="proveedorSeleccionado.RFC" placeholder="Agregue su RFC" required>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Dirección:</label>
-        <input type="text" class="form-control" placeholder="Agregue su dirección" required="">
+        <input type="text" class="form-control" [(ngModel)]="proveedorSeleccionado.Direccion" placeholder="Agregue su dirección" required>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Email:</label>
-        <input type="text" class="form-control" placeholder="Agregue su email" required="">
+        <input type="text" class="form-control" [(ngModel)]="proveedorSeleccionado.Email" placeholder="Agregue su email" required>
       </div>
 
     <div style="margin-bottom: 5em;">

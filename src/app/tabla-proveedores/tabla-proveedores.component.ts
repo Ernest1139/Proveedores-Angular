@@ -24,14 +24,26 @@ export class TablaProveedoresComponent {
   constructor(private proveedoresService : ProveedoresService, private router: Router){
     console.log("Soy el constructor");
     console.log(this.proveedoresService.returnData());
-    this.proveedor = this.proveedoresService.returnData();
+    //this.proveedor = this.proveedoresService.returnData();
+    this.cargarDataProv();
+  }
+  
+  cargarDataProv(){
+    this.proveedoresService.returnData().subscribe(data=>{
+      console.log(data);
+      this.proveedor=data;
+    });
   }
 
   borrarProv(proveedor: Proveedores) {
     const confirmacion = confirm(`¿Esta seguro de borrar el proveedor? ${proveedor.RazonSocial}`)
     if (confirmacion) {
       // this.articulo = this.articulo.filter(a => a.codigo != articulo.codigo); // muestra todos los articulos con el codigo diferente al seleccionado
-      this.proveedoresService.eliminar(proveedor);
+      //this.proveedoresService.eliminar(proveedor);
+      this.proveedoresService.eliminar(proveedor).subscribe(data=>{
+        console.log(data);
+        this.cargarDataProv();
+      });
     }
   }
   
