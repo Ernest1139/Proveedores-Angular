@@ -50,8 +50,9 @@ export class ArticulosService {
     return this.http.post(this.baseUrl,body,{ 'headers' : headers});
   }
 
-  seleccionar(codigo : string) : Articulos {
-    return this.articulo.find(art => art.Codigo == codigo)!;
+  seleccionar(Id : string) : Observable<any> {
+    //return this.articulo.find(art => art.Codigo == Id)!;
+    return this.http.get(this.baseUrl+Id);
   }
   
   getIndex(articulos: Articulos){
@@ -64,10 +65,12 @@ export class ArticulosService {
     return index;
   }
   
-  modificar(articulos : Articulos){
-    const index = this.getIndex(articulos)  
-    this.articulo[index] = {...articulos};
-
+  modificar(articulos : Articulos) : Observable<any>{
+    //const index = this.getIndex(articulos)  
+    //this.articulo[index] = {...articulos};
+    const headers = { 'Content-type' : 'application/json'};
+    const body = JSON.stringify(articulos);
+    return this.http.put(this.baseUrl+articulos.Id,body,{ 'headers' : headers});
   }
 
  eliminar(articulos : Articulos) : Observable<any>{

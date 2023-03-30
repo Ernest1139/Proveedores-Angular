@@ -50,8 +50,9 @@ export class ProveedoresService {
     return this.http.post(this.baseUrl,body,{ 'headers' : headers});
   }
 
-  seleccionar(codigo : number) : Proveedores {
-    return this.proveedor.find(prov => prov.Id == codigo)!;
+  seleccionar(Id : number) : Observable<any> {
+    //return this.proveedor.find(prov => prov.Id == codigo)!;
+    return this.http.get(this.baseUrl+Id);
   }
   
   getIndex(proveedores : Proveedores){
@@ -64,10 +65,12 @@ export class ProveedoresService {
     return index;
   }
   
-  modificar(proveedores : Proveedores){
-    const index = this.getIndex(proveedores)  
-    this.proveedor[index] = {...proveedores};
-
+  modificar(proveedores : Proveedores) : Observable<any>{
+    //const index = this.getIndex(proveedores)  
+    //this.proveedor[index] = {...proveedores};
+    const headers = { 'Content-type' : 'application/json'};
+    const body = JSON.stringify(proveedores);
+    return this.http.put(this.baseUrl+proveedores.Id,body,{ 'headers' : headers});
   }
 
  eliminar(proveedores : Proveedores) : Observable<any>{

@@ -38,7 +38,13 @@ export class FormularioProveedoresComponent {
       const id : number = params["id"];
       this.status = id == undefined ? "agregar" : "modificar";
 
-      this.proveedorSeleccionado = id == undefined ? this.proveedorSeleccionado : this.proveedoresService.seleccionar(id);
+      //this.proveedorSeleccionado = id == undefined ? this.proveedorSeleccionado : this.proveedoresService.seleccionar(id);
+
+      if(id!==undefined) {
+        this.proveedoresService.seleccionar(id).subscribe(data=>{
+          this.proveedorSeleccionado=data;
+        });
+      }
     })
     
   }
@@ -105,8 +111,10 @@ export class FormularioProveedoresComponent {
       confirmButtonText: 'Sí, Modificar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.proveedoresService.modificar(this.proveedorSeleccionado);
-        this.router.navigate(['/proveedores']);
+        this.proveedoresService.modificar(this.proveedorSeleccionado).subscribe(data=>{
+          console.log(data);
+          this.router.navigate(['/proveedores']);
+        })
         // Swal.fire(
         //   'Deleted!',
         //   'Your file has been deleted.',

@@ -53,7 +53,7 @@ export class TablaComponent {
     };
 
     // this.articuloSeleccionadoMostrar.emit(this.articuloSeleccionado);
-    this.router.navigate([`modificarArticulo/${articulo.Codigo}`]);
+    this.router.navigate([`modificarArticulo/${articulo.Id}`]);
   }
 
 }

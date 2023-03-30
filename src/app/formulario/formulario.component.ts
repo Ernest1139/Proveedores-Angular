@@ -36,7 +36,12 @@ export class FormularioComponent {
       const id : string = params["id"];
       this.status = id == undefined ? "agregar" : "modificar";
 
-      this.articuloSeleccionado = id == undefined ? this.articuloSeleccionado : this.articulosService.seleccionar(id);
+      //this.articuloSeleccionado = id == undefined ? this.articuloSeleccionado : this.articulosService.seleccionar(id);
+      if(id!==undefined) {
+        this.articulosService.seleccionar(id).subscribe(data=>{
+          this.articuloSeleccionado=data;
+        });
+      }
     })
     
   }
@@ -98,8 +103,10 @@ export class FormularioComponent {
       confirmButtonText: 'Sí, Modificar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.articulosService.modificar(this.articuloSeleccionado);
-        this.router.navigate(['/articulos']);
+        this.articulosService.modificar(this.articuloSeleccionado).subscribe(data=>{
+          console.log(data);
+          this.router.navigate(['/articulos']);
+        })
         // Swal.fire(
         //   'Deleted!',
         //   'Your file has been deleted.',
